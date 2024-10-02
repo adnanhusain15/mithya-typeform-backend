@@ -21,6 +21,14 @@ app.get(
           },
         }
       );
+      if (response.data?.theme?.href) {
+        const theme = await axios.get(response.data?.theme?.href, {
+          headers: {
+            Authorization: `Bearer ${apiKey}`,
+          },
+        });
+        response.data["theme"] = theme.data;
+      }
       res.json(response.data);
     } catch (error) {
       console.error("Error fetching Typeform data:", error);
@@ -38,6 +46,9 @@ app.get(
       const response = await axios.get(
         `https://api.typeform.com/forms/${formId}/responses`,
         {
+          params: {
+            page_size: 1000,
+          },
           headers: {
             Authorization: `Bearer ${apiKey}`,
           },
