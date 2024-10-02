@@ -14,7 +14,7 @@ app.get(
 
     try {
       const response = await axios.get(
-        `https://api.typeform.com/forms/${formId}/responses`,
+        `https://api.typeform.com/forms/${formId}`,
         {
           headers: {
             Authorization: `Bearer ${apiKey}`,
