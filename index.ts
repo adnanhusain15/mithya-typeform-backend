@@ -4,6 +4,7 @@ import env from "dotenv";
 import cors from "cors";
 const app = express();
 env.config();
+app.use(cors());
 
 app.get(
   "/api/form/:formId",
@@ -49,6 +50,5 @@ app.get(
     }
   }
 );
-app.use(cors());
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
